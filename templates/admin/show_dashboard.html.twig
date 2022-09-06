@@ -20,7 +20,7 @@
 	<div class="row my-5 mx-auto">
 
 		<div class="col-4">
-			<a class="btn btn-outline-dark " href="">Ajouter un article</a>
+			<a class="btn btn-outline-dark " href="{{ path('create_article') }}">Ajouter un article</a>
 		</div>
 
 		<div class="col-4">
@@ -44,12 +44,13 @@
 
 				<thead class="table-dark">
 					<tr>
-						<th>#</th>
-						<th>Titre</th>
-						<th>Contenu</th>
-						<th>Catégorie</th>
-						<th>Crée le</th>
-						<th>Action</th>
+						<th class="text-center">#</th>
+						<th class="text-center">Titre</th>
+						<th class="text-center">Contenu</th>
+						<th class="text-center">Catégorie</th>
+						<th class="text-center">Auteur</th>
+						<th class="text-center">Crée le</th>
+						<th class="text-center">Action</th>
 					</tr>
 				</thead>
 
@@ -65,7 +66,7 @@
 							<td class="text-center">{{ article.author.fullname }}</td>
 							<td class="text-center">{{ article.createdAt | date('d/m/Y') }}</td>
 							<td class="text-center">
-								<a href="" class="text-info" title="Modifier l'article">
+								<a href="{{ path('update_article', {'id': article.id}) }}" class="text-info" title="Modifier l'article">
 									<i class="fa fa-edit"></i>
 								</a>
 								<a href="" class="text-danger" title="Archiver l'article" onclick="return confirm('Voulez-vous archiver cet article ?')">
@@ -99,11 +100,11 @@
 		<table class="table">
 			<thead class="table-dark">
 				<tr>
-					<th>#</th>
-					<th>Nom</th>
-					<th>Alias</th>
-					<th>Créée le</th>
-					<th>Actions</th>
+					<th class="text-center">#</th>
+					<th class="text-center">Nom</th>
+					<th class="text-center">Alias</th>
+					<th class="text-center">Créée le</th>
+					<th class="text-center">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
