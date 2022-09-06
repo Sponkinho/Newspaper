@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="col-4">
-			<a class="btn btn-outline-dark " href="">Voir les archives</a>
+			<a class="btn btn-outline-dark " href="{{ path('show_archives') }}">Voir les archives</a>
 		</div>
 
 	</div>
@@ -107,7 +107,33 @@
 				</tr>
 			</thead>
 			<tbody>
-				<td colspan='5' class="bg-info text-center align-middle">Aucune catégorie</td>
+
+				{% for category in categories %}
+
+					<tr>
+						<td class="text-center">{{ category.id }}</td>
+						<td class="text-center">{{ category.name }}</td>
+						<td class="text-center">{{ category.alias }}</td>
+						<td class="text-center">{{ category.createdAt | date('d/m/Y') }}</td>
+						<td class="text-center">
+							<a href="{{ path('update_category', {'id': category.id}) }}" class="text-info" title="Modifier l'article">
+								<i class="fa fa-edit"></i>
+							</a>
+							<a href="{{ path('soft_delete_category', {'id': category.id}) }}" class="text-danger" title="Archiver l'article" onclick="return confirm('Voulez-vous archiver cet article ?')">
+								<i class="fa fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+
+				{% else %}
+
+					<tr>
+						<td colspan='5' class="bg-info text-center align-middle">Aucune catégorie</td>
+					</tr>
+
+
+				{% endfor %}
+
 			</tbody>
 		</table>
 
@@ -144,7 +170,7 @@
 						<td class="text-center">{{ user.createdAt | date('d/m/Y') }}</td>
 						<td class="text-center">
 
-							<a href="" class="text-warning" title="Modifier le rôle" >
+							<a href="" class="text-warning" title="Modifier le rôle">
 								<i class="fa fa-user-edit"></i>
 							</a>
 
