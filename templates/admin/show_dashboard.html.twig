@@ -19,16 +19,16 @@
 	{# Buttons #}
 	<div class="row my-5 mx-auto">
 
-		<div class="btn btn-outline-dark col-4">
-			<a href="">Ajouter un article</a>
+		<div class="col-4">
+			<a class="btn btn-outline-dark " href="">Ajouter un article</a>
 		</div>
 
-		<div class="btn btn-outline-dark col-4">
-			<a href="">Ajouter une catégorie</a>
+		<div class="col-4">
+			<a class="btn btn-outline-dark " href="{{ path('create_category') }}">Ajouter une catégorie</a>
 		</div>
 
-		<div class="btn btn-outline-dark col-4">
-			<a href="">Voir les archives</a>
+		<div class="col-4">
+			<a class="btn btn-outline-dark " href="">Voir les archives</a>
 		</div>
 
 	</div>
@@ -144,7 +144,7 @@
 						<td class="text-center">{{ user.createdAt | date('d/m/Y') }}</td>
 						<td class="text-center">
 
-							<a href="" class="text-warning" title="Modofier le rôle" >
+							<a href="" class="text-warning" title="Modifier le rôle" >
 								<i class="fa fa-user-edit"></i>
 							</a>
 
