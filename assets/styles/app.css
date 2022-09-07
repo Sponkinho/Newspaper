@@ -1,3 +1,15 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: lightgray;
+    background-color: lavender !important;
+}
+
+.item-hover:hover{
+    color: #ffc107 !important;
+    border-bottom: 1px solid #ffc107 !important;
+    transition: ease-in-out 0.1s;
 }

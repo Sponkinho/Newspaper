@@ -45,3 +45,13 @@
         </div>
     </nav>
 </header>
+
+<div class="bg-light">
+    
+    {# 1ere Façon L'appel de l'action se fera de manière statique:: et il faudra reseigner le namespace du Controller#}
+    {{ render(controller('App\\Controller\\RenderController::renderCategoriesInNav')) }}
+    
+    {# 2eme Façon On peut utiliser des parametres avec la fonction url, plus pratique que la premiere, Cette fonction prend un nom de route (name:), le resultat sera identique#}
+    {# {{ render(url("render_categories_in_nav")) }} #}
+
+</div>
