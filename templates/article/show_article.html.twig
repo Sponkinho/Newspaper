@@ -1,18 +1,25 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Articles{% endblock %}
+
 
 {% block body %}
 
+
 	<div class="row">
 		<div class="col-10 mx-auto mb-4">
-			<div class="card text-center">
+
+			<div class="card">
 				<div class="card-header">
 					<h1 class="text-center card-title mb-5">{{ article.title }}</h1>
 					<h4 class="text-center text-secondary mb-3">{{ article.subtitle }}</h4>
 				</div>
 				<ul class="list-group list-group flush">
-					<li class="list-group-item text-center text-muted">Crée {{ article.createdAt | ago(locale='fr')}} | Par <span class="text-underlined">{{ article.author.fullname }}</span> </li>
+					<li class="list-group-item text-center text-muted">Crée
+						{{ article.createdAt | ago(locale='fr') }}
+						| Par
+						<u class="text-underline">{{ article.author.fullname }}</u>
+					</li>
 				</ul>
 				<img src="{{ asset('uploads/' ~ article.photo) }}" alt="{{ article.title }}" class="img-custom2">
 				<div class="card-body">

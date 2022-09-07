@@ -5,16 +5,16 @@
 }
 
 body {
-    background-color: lavender !important;
+    background-color: #FFFFFF !important;
 }
 
-.item-hover:hover{
+.item-hover:hover {
     color: #ffc107 !important;
-    border-bottom: 1px solid #ffc107 !important;
+    border-bottom: 2px solid #ffc107 !important;
     transition: ease-in-out 0.1s;
 }
 
-.img-custom{
+.img-custom {
     object-fit: cover;
     width: 375px;
     height: 210px;
