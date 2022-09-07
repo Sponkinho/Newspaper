@@ -13,3 +13,9 @@ body {
     border-bottom: 1px solid #ffc107 !important;
     transition: ease-in-out 0.1s;
 }
+
+.img-custom{
+    object-fit: cover;
+    width: 375px;
+    height: 210px;
+}
