@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -117,6 +118,46 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
             'article' => $article
         ]);
+    }
+
+    #[Route('/archiver-un-article/{id}', name: 'soft_delete_article', methods: ['GET'])]
+    public function softDeleteProduit(Article $article, ArticleRepository $repository): RedirectResponse
+    {
+        $article->setDeletedAt(new DateTime());
+
+        $repository->add($article, true);
+
+
+        $this->addFlash('success', 'L\'article a bien été archivé. Voir les archives !');
+
+        return $this->redirectToRoute('show_dashboard');
+    }
+
+    #[Route('/restaurer-un-article/{id}', name: 'restore_article', methods:['GET'])]
+    public function restore(Article $article, ArticleRepository $repository): Response
+    {
+        $article->setDeletedAt(null);
+
+        $repository->add($article, true);
+
+        $this->addFlash('success', 'L\'article est bien restaurée !');
+        return $this->redirectToRoute('show_archives');
+    }
+
+    #[Route('/supprimer-un-article/{id}', name: 'hard_delete_article', methods:['GET'])]
+    public function hardDelete(Article $article, ArticleRepository $repository): Response
+    {
+        $photo = $article->getPhoto();
+
+        if ($photo) {
+            // Pour supprimer un fichier dans le système, on utilise la fonction native PHP unlink()
+            unlink($this->getParameter('uploads_dir' . '/' . $photo));
+        }
+
+        $repository->remove($article, true);
+
+        $this->addFlash('success', 'L\'article a bien été supprimé définitivement');
+        return $this->redirectToRoute('show_archives');
     }
 
     ///////////////////////////////////////////////////////////////// PRIVATE FUNCTION /////////////////////////////////////////////////////////////
