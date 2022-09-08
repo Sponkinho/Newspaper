@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}Articles
+{% endblock %}
 
 
 {% block body %}
 
+	<div class="row">
+		<div class="col-6 mx-auto">
+			{% include 'include/_flashes.html.twig' %}
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-10 mx-auto mb-4">
@@ -26,6 +32,51 @@
 					<p class="card-text col-8 mx-auto my-4 text-center">{{ article.content | raw }}</p>
 				</div>
 			</div>
+
+		</div>
+	</div>
+
+
+	{{ render(url('add_commentary', {'id': article.id})) }}
+
+
+	<div class="row">
+		<div class="col-6 mx-auto">
+
+			<h3 class="mb-5">Espace Commentaires :</h3>
+
+			{% for commentary in commentaries | reverse %}
+
+				<div class="alert alert-dark mb-3" role="alert">
+					<h4 class="alert-heading">{{commentary.author.fullname}}
+						<span class="h6">posté
+							{{ commentary.createdAt | ago(locale='fr') }}</span>
+					</h4>
+
+					<p>{{ commentary.comment }}</p>
+
+					<hr>
+
+					<p class="mb-0">Partager :
+						<a href="">
+							<i class="fa-brands fa-instagram"></i>
+						</a>
+						<a href="">
+							<i class="fa-brands fa-twitter"></i>
+						</a>
+						<a href="">
+							<i class="fa-brands fa-facebook"></i>
+						</a>
+					</p>
+				</div>
+
+
+				{% else %}
+
+				<div class="alert alert-dark mb-3" role="alert">
+					<p>Aucun commentaire pour cet article</p>
+				</div>
+			{% endfor %}
 
 		</div>
 	</div>
