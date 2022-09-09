@@ -3,6 +3,14 @@
 {% block title %}Ajouter un article
 {% endblock %}
 
+{% block javascripts %}
+
+	{{ parent() }} {# Pour eviter d'ecraser le JS dans base.html.twig #}
+	<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
+{% endblock %}
+
+
 {% block body %}
 
 	{% if article is not defined %}
